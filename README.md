@@ -1,6 +1,7 @@
 # Vim Configuration
 
-Derived from dot_vim from mutwinter but too much plugins reduce my productivity 
+Derived from mutwinter dot_vim 
+=> too much plugins reduce my productivity 
 
 ## Installation
 
