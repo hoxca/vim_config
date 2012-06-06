@@ -1,22 +1,26 @@
-# The Vim Configuration of Champions
+# Vim Configuration
 
-[See dot_vim's Stats on GitEgo](http://gitego.com/mutewinter/dot_vim)
+Derived from dot_vim from mutwinter but too much plugins reduce my productivity 
 
 ## Installation
 
-1. `git clone http://github.com/mutewinter/dot_vim.git` in your home folder.
-2. `mv dot_vim .vim`
+1. `git clone http://github.com/hoxca/vim_config.git` in your home folder.
+2. `mv vim_config .vim`
 3. `cd .vim`
 4. `rake vim:link` to make the .vimrc symbolic link.
 5. Install [Vundle](https://github.com/gmarik/vundle) with `git clone http://github.com/gmarik/vundle.git bundle/vundle`
 6. Run Vim and type `:BundleInstall` to install the plugins with Vundle.
-7. Enjoy enhanced productivity, increased levitation, reduced watermelon-related accidents, and startling sex appeal.
+7. Enjoy
 
 ## Requirements
 
 **Mac**
 
  * [MacVim](https://github.com/b4winckler/macvim) - I'm currently using [snapshot 64](https://github.com/b4winckler/macvim/downloads)
+
+**Linux**
+
+ * [Vim-Nox] on Ubuntu as far as it's compiled with ruby support ! 
 
 ## Notes
 
@@ -30,7 +34,7 @@ I may make this more verbose later, but for now, here's a list of plugins that r
  * [Fugitive](https://github.com/tpope/vim-fugitive) Requires Git to be installed.
  * [syntastic](https://github.com/scrooloose/syntastic) Requires many different binaries installed depending on what filetypes you want it to check.
  * [ack.vim](https://github.com/mileszs/ack.vim) Requires [ack](http://betterthangrep.com/) to be installed.
- * [Menlo for Powerline](https://gist.github.com/1627888) The custom font I'm using for vim-powerline.
+ * [Monaco patched for Powerline] Provided in config folder
 
 ## Plugin List
 
