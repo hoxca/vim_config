@@ -8,9 +8,9 @@ Derived from mutwinter dot_vim
 1. `git clone http://github.com/hoxca/vim_config.git` in your home folder.
 2. `mv vim_config .vim`
 3. `cd .vim`
-4. `rake vim:link` to make the .vimrc symbolic link.
-5. Install [Vundle](https://github.com/gmarik/vundle) with `git clone http://github.com/gmarik/vundle.git bundle/vundle`
-6. Run Vim and type `:BundleInstall` to install the plugins with Vundle.
+4. `rake vim:install` to make the .vimrc symbolic link. install vundle and all plugins
+5. `rake vim:commandt` to compile commandt 
+    make sure that vim has +ruby support
 7. Enjoy
 
 ## Requirements
@@ -31,10 +31,7 @@ Be sure to always edit the vimrc using `,v`, which opens the vimrc in the .vim f
 
 I may make this more verbose later, but for now, here's a list of plugins that require further installation:
 
- * [Command-T](https://github.com/wincent/Command-T) Needs compilation.
- * [Fugitive](https://github.com/tpope/vim-fugitive) Requires Git to be installed.
  * [syntastic](https://github.com/scrooloose/syntastic) Requires many different binaries installed depending on what filetypes you want it to check.
- * [ack.vim](https://github.com/mileszs/ack.vim) Requires [ack](http://betterthangrep.com/) to be installed.
  * [Monaco patched for Powerline] Provided in config folder
 
 ## Plugin List
