@@ -34,8 +34,26 @@ namespace :vim do
         puts '  mklink _vimrc .vim\vimrc'
       end
     end
-    
   end
+
+  task :vundle do
+    begin
+      `git clone http://github.com/gmarik/vundle.git bundle/vundle`
+      `vim -s config/install.vi`
+    end
+  end
+
+  task :commandt do
+    begin
+      `cd bundle/Command-T/ruby/command-t && ruby extconf.rb && make && make install`
+    end
+  end
+
+  task :install do
+    Rake::Task['vim:link'].invoke
+    Rake::Task['vim:vundle'].invoke
+  end
+  
 end
 
 namespace :plugins do

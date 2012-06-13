@@ -97,11 +97,11 @@ let g:molokai_original = 1
 " Conditionally Set colorscheme
 if $TERM == 'xterm-256color'
   " Neato, 256 color terminal. We can use ir_black_mod
-  colorscheme ir_black_mod
+  :silent! colorscheme ir_black_mod
 else
   " We can't use ir_black_mod :(
   let g:CSApprox_verbose_level=0
-  colorscheme slate
+  :silent! colorscheme slate
 endif
 
 " ---------------
@@ -212,7 +212,7 @@ nmap K k
 vmap K k
 
 " Make line completion easier
-imap <C-l> <C-x><C-l>
+" imap <C-l> <C-x><C-l>
 
 
 " Use ; for : in normal and visual mode, less keystrokes
@@ -366,7 +366,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " ---------------
 " Indent Guides
 " ---------------
-" let g:indent_guides_auto_colrs=1
+" let g:indent_guides_auto_colors=1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black     ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray  ctermbg=darkgray
