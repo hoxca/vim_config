@@ -22,16 +22,17 @@ Bundle 'gmarik/vundle'
 " ---------------
 
 " Navigation
-Bundle 'FuzzyFinder'
+Bundle 'mru.vim'
+Bundle 'wincent/Command-T'
+
 " This fork is required due to remapping ; to :
 Bundle 'christoomey/vim-space'
 Bundle 'minibufexpl.vim'
 Bundle 'cmdline-insertdatetime'
+
 " UI Additions
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdtree'
-" Bundle 'Rykka/ColorV'
 Bundle 'mutewinter/ir_black_mod'
 Bundle 'wincent/Command-T'
 
@@ -48,8 +49,7 @@ Bundle 'tComment'
 
 " SnipMate
 Bundle "garbas/vim-snipmate"
-
-" SnipMate Depedancies
+" SnipMate Dependancies
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
@@ -63,10 +63,8 @@ Bundle 'pangloss/vim-javascript'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
-"Bundle 'rcodetools/rcodetools.vim'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
-au BufRead,BufNewFile *.vm set ft=html syntax=velocity
 
 " ---------------------------------------------------------
 " Avoid Platform Specific Configuration (we love Mac OSX)
@@ -83,12 +81,10 @@ if has('gui_macvim')
 
 endif
 
-" ----------------------------------------
+" ---------------------------------------------
 " Regular Vim Configuartion (No Plugins Needed)
-" ----------------------------------------
+" ---------------------------------------------
 
-let g:Powerline_symbols = 'fancy'
-let g:molokai_original = 1
 
 " ---------------
 " Color
@@ -178,7 +174,8 @@ set t_vb=
 " Mouse
 " ---------------
 set mousehide          " Hide mouse after chars typed
-set mouse=nihr         " Mouse in almost all mode (avoid visual)
+" set mouse=nihr         " Mouse in almost all mode (avoid visual)
+set mouse=a
 
 " Better complete options to speed it up
 set complete=.,w,b,u,U
@@ -274,10 +271,16 @@ set showcmd
 " Plugin Configuration
 " ----------------------------------------
 
+" ---------------------------------------------
+" Powerline setup
+" ---------------------------------------------
+
+let g:Powerline_symbols = 'fancy'
+let g:molokai_original = 1
+
 " ---------------
 " tComment
 " ---------------
-
 let g:tcommentMapLeaderOp1="<Leader>c"
 let g:tcommentMapLeaderOp2="<Leader>_"
 vmap <leader>b :TCommentBlock<cr>
@@ -327,27 +330,15 @@ let g:miniBufExplModSelTarget=1
 " -------------------------
 " InsertDate and timestamp
 " -------------------------
-
 inoremap <expr> <C-d> strftime('%d-%m-%Y')
 cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 cnoremap <expr> <C-X>ts strftime('%Y%m%d%H%M')
 
 " ---------------
-" FuzzyFinder
+" MRU File
 " ---------------
-let g:fufNextMode="<c-m>"
-let g:fuf_modesDisable=['mrucmd'] " Enables FufMruFile
+nnoremap <leader>ff :MRU<CR>
 
-if has('mac') || has('macunix') || has('gui_macvim')
-  nnoremap <silent><D-y> :FufMruFile<CR>
-  nnoremap <silent><D-u> :FufFileWithCurrentBufferDir<CR>
-else
-  nnoremap <silent><M-y> :FufMruFile<CR>
-  nnoremap <silent><M-u> :FufFileWithCurrentBufferDir<CR>
-end
-nnoremap <leader>ff :FufFile<CR>
-nnoremap <leader>fm :FufMruFile<CR>
-nnoremap <leader>fb :FufBuffer<CR>
 " ---------------
 " ctags
 " ---------------
