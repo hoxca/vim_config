@@ -33,8 +33,10 @@ Bundle 'cmdline-insertdatetime'
 " UI Additions
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'mutewinter/ir_black_mod'
+Bundle 'hoxca/bk_hoxca_colors'
+"Bundle 'ColorTest'
 Bundle 'wincent/Command-T'
+"Bundle 'Conque-Shell'
 
 " Commands
 Bundle 'tpope/vim-surround'
@@ -43,16 +45,18 @@ Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
-Bundle 'gregsexton/MatchTag'
+"Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
 Bundle 'tComment'
 
+
+
 " SnipMate
-Bundle "garbas/vim-snipmate"
+"Bundle "garbas/vim-snipmate"
 " SnipMate Dependancies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "snipmate-snippets"
+"Bundle "MarcWeber/vim-addon-mw-utils"
+"Bundle "tomtom/tlib_vim"
+"Bundle "snipmate-snippets"
 
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
@@ -61,7 +65,7 @@ Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
 
 " Libraries
-Bundle 'L9'
+"Bundle 'L9'
 Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
@@ -92,14 +96,14 @@ endif
 
 " Conditionally Set colorscheme
 if $TERM == 'xterm-256color'
-  " Neato, 256 color terminal. We can use ir_black_mod
-  :silent! colorscheme ir_black_mod
+  " Neato, 256 color terminal. We can use bk_hoxca_colors
+  :silent! colorscheme bk_hoxca_colors
+  set cul
 else
-  " We can't use ir_black_mod :(
+  " We can't use bk_hoxca_colors :(
   let g:CSApprox_verbose_level=0
   :silent! colorscheme slate
 endif
-
 " ---------------
 " Backups
 " ---------------
@@ -111,15 +115,38 @@ set directory=~/.vim/tmp
 " UI
 " ---------------
 set ruler              " Ruler on
-" set nu               " Line numbers on
+set nu                 " Line numbers on
 set nowrap             " Line wrapping off
 set laststatus=2       " Always show the statusline
 set cmdheight=2
 
+" set cursorLine on active buffer window
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+
+" ---------------
+" Sounds
+" ---------------
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" ---------------
+" Mouse
+" ---------------
+set mousehide          " Hide mouse after chars typed
+" set mouse=nihr         " Mouse in almost all mode (avoid visual)
+set mouse=a
+
+" Better complete options to speed it up
+set complete=.,w,b,u,U
+
+" ----------------------------------------
+" Bindings
 " ---------------
 " Behaviors
 " ---------------
-syntax enable
+:silent syntax enable
 set autoread           " Automatically reload changes if detected
 set wildmenu           " Turn on WiLd menu
 set hidden             " Change buffer - without saving
@@ -127,7 +154,7 @@ set history=1024       " Number of things to remember in history.
 set cf                 " Enable error files & error jumping.
 set clipboard+=unnamed " Yanks go on clipboard instead.
 set autowrite          " Writes on make/shell commands
-set timeoutlen=1500    " Time to wait for a command (after leader for example)
+set timeoutlen=250    " Time to wait for a command (after leader for example)
 
 set foldlevelstart=99  " Remove folds
 set formatoptions=crql
@@ -163,31 +190,24 @@ set showcmd            " tune the timeout and show command for leaderkey"
 set showmatch          " Show matching brackets.
 set matchtime=2        " How many tenths of a second to blink
 
-" ---------------
-" Sounds
-" ---------------
-set noerrorbells
-set novisualbell
-set t_vb=
-
-" ---------------
-" Mouse
-" ---------------
-set mousehide          " Hide mouse after chars typed
-" set mouse=nihr         " Mouse in almost all mode (avoid visual)
-set mouse=a
-
-" Better complete options to speed it up
-set complete=.,w,b,u,U
-
 " ----------------------------------------
-" Bindings
-" ----------------------------------------
+"  shift
+set <S-Down>=[1;2B
+set <S-Up>=[1;2A
+set <S-Right>=[1;2C
+set <S-Left>=[1;2D
 
-set <S-Down>=[1;9B
-set <S-UP>=[1;9A
-set <S-Right>=[1;9C
-set <S-Left>=[1;9D
+"  alt
+set <kHome>=[1;9C
+set <kPageDown>=[1;9B
+set <kPageUp>=[1;9A
+set <kEnd>=[1;9D
+
+" Enable hugh speed motion
+map <C-Up> 8j<CR>
+map <C-Down> 10k<CR>
+map <kEnd> :bN<CR>
+map <kHome> :bn<CR>
 
 nmap <silent> <S-Down> :wincmd j<CR>
 nmap <silent> <S-Up> :wincmd k<CR>
@@ -195,11 +215,14 @@ nmap <silent> <S-Right> :wincmd l<CR>
 nmap <silent> <S-Left> :wincmd h<CR>
 
 " insert right spaceship for ruby =>
-imap <c-l> <space>=><space>
+imap <c-l> =><space>
 
 " Fixes common typos
 " command W w!
 " command Q q!
+
+" i never paste before location
+nmap P p
 
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -268,9 +291,16 @@ set pastetoggle=<F2>
 set showcmd
 
 " ----------------------------------------
+"  set folding setting
+"  ---------------------------------------
+set fillchars=" "
+set foldmethod=manual
+set foldlevel=1
+
+" ----------------------------------------
 " Plugin Configuration
 " ----------------------------------------
-
+"
 " ---------------------------------------------
 " Powerline setup
 " ---------------------------------------------
@@ -294,6 +324,7 @@ let g:tcommentBlankLines=0
 " time with)
 let g:SuperTabDefaultCompletionType="<c-x><c-n>"
 let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
+
 
 " ---------------
 " Neocachecompl
@@ -322,17 +353,17 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'], 'p
 " --------------------
 " Minibuffer Explorer
 " --------------------
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1
+let g:miniBufExplMapWindowNavVim=0
+let g:miniBufExplMapWindowNavArrows=0
+let g:miniBufExplMapCTabSwitchBufs=0
+let g:miniBufExplModSelTarget=0
+let g:miniBufExplUseSingleClick=1
 
 " -------------------------
 " InsertDate and timestamp
 " -------------------------
 inoremap <expr> <C-d> strftime('%d-%m-%Y')
-cnoremap <expr> <C-X>dt strftime('%Y%m%d')
-cnoremap <expr> <C-X>ts strftime('%Y%m%d%H%M')
+cnoremap <expr> <C-d> strftime('%Y%m%d')
 
 " ---------------
 " MRU File
@@ -343,16 +374,6 @@ nnoremap <leader>ff :MRU<CR>
 " ctags
 " ---------------
 set tags=tags;/
-
-" ---------------
-" NERDTree
-" ---------------
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " ---------------
 " Indent Guides
@@ -412,14 +433,6 @@ let g:statusline_order=[
 map <silent><leader>r :RRB<CR>
 map <silent><F5> :RRB<CR>
 
-" ---------------
-" SpeedDating
-" ---------------
-let g:speeddating_no_mappings=1 " Remove default mappings (C-a etc.)
-nmap <silent><leader>dm <Plug>SpeedDatingDown
-nmap <silent><leader>dp <Plug>SpeedDatingUp
-nmap <silent><leader>dn <Plug>SpeedDatingNowUTC
-
 " --------------
 "  Command-T
 "  -------------
@@ -436,10 +449,28 @@ if has('ruby')
     nnoremap <silent><M-t> :CommandT<CR>
   endif
 
-  " Leader Commands
-  nnoremap <leader>t :CommandT<CR>
+  " I constantly remap ,t so i don't use it for commandT !
+  " Leader Commands 
+  " nnoremap <leader>t :CommandT<CR>
 endif
 
+
+" -----------------------------
+"  DelimitMate
+"  ----------------------------
+let g:delimitMate_apostrophes = ''
+let g:delimitMate_autoclose = 1
+let g:delimitMate_balance_matchpairs = 0
+let g:delimitMate_eol_marker = ''
+let g:delimitMate_excluded_ft = ''
+let g:delimitMate_excluded_regions = 'Comment'
+let g:delimitMate_expand_cr = 0
+let g:delimitMate_expand_space = 0
+let g:delimitMate_matchpairs = '(:),{:},[:]'
+let g:delimitMate_nesting_quotes = []
+let g:delimitMate_quotes = '" '' `'
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\!\|£\|\$\|_\|["'']\s*\S\)'
+let g:delimitMate_smart_quotes = 1
 
 " ---------------
 " Tabular
@@ -464,6 +495,7 @@ nmap <Leader>bc :BundleClean<CR>
 " ----------------------------------------
 " Functions
 " ----------------------------------------
+
 
 " ---------------
 " OpenURL
@@ -567,6 +599,7 @@ function! QuickSpellingFix()
     set nospell
   endif
 endfunction
+
 
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>
