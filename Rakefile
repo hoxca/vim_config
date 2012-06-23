@@ -38,16 +38,12 @@ namespace :vim do
   end
 
   task :vundle do
-    begin
       `git clone http://github.com/gmarik/vundle.git bundle/vundle`
       `vim -s config/install.vi`
-    end
   end
 
   task :commandt do
-    begin
       `cd bundle/Command-T/ruby/command-t && ruby extconf.rb && make && make install`
-    end
   end
 
   task :install do
@@ -147,8 +143,6 @@ def fetch_github_repo_description(user, name)
   else
     response = open("https://api.github.com/repos/#{user}/#{name}", :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read
   end
-  
   repo = JSON.parse response
   repo['description']
 end
-
