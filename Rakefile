@@ -2,6 +2,7 @@
 #
 # Simple tasks for managing my .vim files
 
+require 'rubygems'
 require 'open-uri'
 require 'openssl'
 require 'json'
