@@ -233,6 +233,8 @@ vmap K k
 " Make line completion easier
 " imap <C-l> <C-x><C-l>
 
+" map reload
+map <leader>k :w<cr>:so %<cr>
 
 " Use ; for : in normal and visual mode, less keystrokes
 nnoremap ; :
@@ -415,6 +417,27 @@ function! IndentGuidesSwitch(switch)
 endfunction
 autocmd FileType * call IndentGuidesSwitch(0)
 autocmd FileType notes call IndentGuidesSwitch(1)
+
+" ---------------
+" Print
+" ---------------
+
+function! PrintFile(fname)
+  call system("a2ps " . a:fname)
+  call delete(a:fname)
+  return v:shell_error
+endfunc
+
+function! PrintFilePreview(fname)
+  call system("a2ps -P display " . a:fname)
+  call delete(a:fname)
+  return v:shell_error
+endfunc
+
+command! LetPrintFile call PrintFile(expand('%'))
+command! LetPreviewPrintFile call PrintFilePreview(expand('%'))
+map <leader>p :LetPreviewPrintFile<CR>
+map <leader>l :LetPrintFile<CR>
 
 " ---------------
 " Session
