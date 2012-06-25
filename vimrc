@@ -34,7 +34,6 @@ Bundle 'cmdline-insertdatetime'
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hoxca/bk_hoxca_colors'
-"Bundle 'ColorTest'
 Bundle 'wincent/Command-T'
 "Bundle 'Conque-Shell'
 
@@ -49,7 +48,8 @@ Bundle 'ervandew/supertab'
 Bundle 'Shougo/neocomplcache'
 Bundle 'tComment'
 
-
+" Take some Notes in vim
+Bundle 'xolox/vim-notes'
 
 " SnipMate
 "Bundle "garbas/vim-snipmate"
@@ -204,8 +204,10 @@ set <kPageUp>=[1;9A
 set <kEnd>=[1;9D
 
 " Enable hugh speed motion
-map <C-Up> 8j<CR>
-map <C-Down> 10k<CR>
+nmap <C-Up> 8j
+nmap <C-Down> 8k
+imap <C-Up> <ESC>8ji
+imap <C-Down> <ESC>10ki
 map <kEnd> :bN<CR>
 map <kHome> :bn<CR>
 
@@ -220,9 +222,6 @@ imap <c-l> =><space>
 " Fixes common typos
 " command W w!
 " command Q q!
-
-" i never paste before location
-nmap P p
 
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -300,7 +299,7 @@ set foldlevel=1
 " ----------------------------------------
 " Plugin Configuration
 " ----------------------------------------
-"
+
 " ---------------------------------------------
 " Powerline setup
 " ---------------------------------------------
@@ -380,10 +379,10 @@ set tags=tags;/
 " ---------------
 " let g:indent_guides_auto_colors=1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black     ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray  ctermbg=darkgray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black     ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray  ctermbg=235
 
-let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_enable_on_vim_startup=0
 let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=5
 
@@ -394,6 +393,28 @@ else
   " Turn off the guides when 256color mode isn't available
   let g:indent_guides_enable_on_vim_startup=0
 endif
+" map ,g to toggle fct
+map <leader>g :call indent_guides#toggle()<CR>
+
+" ---------------------------------------------
+" Notes setup
+" ---------------------------------------------
+
+let g:notes_directory = '~/Notes'
+let g:notes_suffix = '.txt'
+let g:notes_title_sync = 'rename_file'
+let g:notes_list_bullets = ['•', '◦', '▸', '▹', '▪', '▫']
+
+" Disable indentGuide when taking notes !
+function! IndentGuidesSwitch(switch)
+  if a:switch
+    let g:indent_guides_autocmds_enabled=0
+  else
+    let g:indent_guides_autocmds_enabled=1
+  endif
+endfunction
+autocmd FileType * call IndentGuidesSwitch(0)
+autocmd FileType notes call IndentGuidesSwitch(1)
 
 " ---------------
 " Session
