@@ -35,7 +35,7 @@ Bundle 'mutewinter/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hoxca/bk_hoxca_colors'
 Bundle 'wincent/Command-T'
-"Bundle 'Conque-Shell'
+Bundle 'Conque-Shell'
 
 " Commands
 Bundle 'tpope/vim-surround'
@@ -320,6 +320,15 @@ let g:tcommentMapLeaderOp2="<Leader>_"
 vmap <leader>b :TCommentBlock<cr>
 let g:tcommentOptions =  {'col': 1}
 let g:tcommentBlankLines=0
+
+"---------------
+" Conque Shell
+" ---------------
+
+let g:ConqueTerm_PyVersion = 2
+let g:ConqueTerm_Color = 1
+let g:ConqueTerm_SessionSupport = 0
+let g:ConqueTerm_TERM = 'xterm-color'
 
 "---------------
 " SuperTab
