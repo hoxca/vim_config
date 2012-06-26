@@ -190,7 +190,20 @@ set showcmd            " tune the timeout and show command for leaderkey"
 set showmatch          " Show matching brackets.
 set matchtime=2        " How many tenths of a second to blink
 
-" ----------------------------------------
+" ---------------
+" Leader
+" ---------------
+
+" Set leader to ,
+let mapleader=","
+
+nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>v :e ~/.vim/vimrc<CR>
+
+" ---------------
+" Mappings
+" ---------------
+
 "  shift
 set <S-Down>=[1;2B
 set <S-Up>=[1;2A
@@ -231,7 +244,7 @@ nmap K k
 vmap K k
 
 " Make line completion easier
-" imap <C-l> <C-x><C-l>
+imap <C-l> <C-x><C-l>
 
 " map reload
 map <leader>k :w<cr>:so %<cr>
@@ -242,16 +255,6 @@ vnoremap ; :
 " double percentage sign in command mode is expanded
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" ---------------
-" Leader
-" ---------------
-
-" Set leader to ,
-let mapleader=","
-
-nmap <silent> <leader>s :set spell!<CR>
-nmap <silent> <leader>v :e ~/.vim/vimrc<CR>
 
 " ---------------------------------------
 " RENAME CURRENT FILE
