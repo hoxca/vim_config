@@ -63,7 +63,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'html5.vim' 
 Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
-
+Bundle 'lepture/vim-velocity'
 " Libraries
 "Bundle 'L9'
 Bundle 'tpope/vim-repeat'
@@ -229,9 +229,6 @@ nmap <silent> <S-Up> :wincmd k<CR>
 nmap <silent> <S-Right> :wincmd l<CR>
 nmap <silent> <S-Left> :wincmd h<CR>
 
-" insert right spaceship for ruby =>
-imap <c-l> =><space>
-
 " Fixes common typos
 " command W w!
 " command Q q!
@@ -244,7 +241,8 @@ nmap K k
 vmap K k
 
 " Make line completion easier
-imap <C-l> <C-x><C-l>
+"imap <C-l> <C-x><C-l>
+" Used for ruby right spaceship
 
 " map reload
 map <leader>k :w<cr>:so %<cr>
@@ -255,6 +253,38 @@ vnoremap ; :
 " double percentage sign in command mode is expanded
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+
+" ---------------------------------------
+" Ruby tunes
+" ---------------------------------------
+
+if !exists( "*RubyEndToken" )
+
+  function RubyEndToken()
+    let current_line = getline( '.' )
+    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+
+      if match(current_line, braces_at_end) >= 0
+        return "\<CR>}\<C-O>O"
+      elseif match(current_line, stuff_without_do) >= 0
+        return "\<CR>end\<C-O>O"
+      elseif match(current_line, with_do) >= 0
+        return "\<CR>end\<C-O>O"
+      else
+        return "\<CR>"
+      endif
+    endfunction
+
+endif
+
+" Ruby custom mapping
+imap <buffer> <S-F12> <C-R>=RubyEndToken()<CR>
+
+" insert right spaceship for ruby 1.8 hash =>
+inoremap <c-l> =><space>
 
 " ---------------------------------------
 " RENAME CURRENT FILE
@@ -287,6 +317,11 @@ if has("autocmd")
         \ if line("'\"") > 1 && line ("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endif
+
+  autocmd BufRead,BufNewFile *.vm set ft=html syntax=velocity
+  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 endif
 
 " Use F2 to toggle Paste in insert mode
@@ -564,7 +599,6 @@ ruby << EOF
   
   def extract_url(url)
     re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]\{\};:'".,<>?«»“”‘’]))}
-
     url.match(re).to_s
   end
 
@@ -659,7 +693,3 @@ endfunction
 
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>
-
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
