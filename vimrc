@@ -36,6 +36,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'hoxca/bk_hoxca_colors'
 Bundle 'wincent/Command-T'
 Bundle 'Conque-Shell'
+Bundle 'matchit.zip'
 
 " Commands
 Bundle 'tpope/vim-surround'
@@ -64,6 +65,7 @@ Bundle 'html5.vim'
 Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
+Bundle 'tpope/vim-haml'
 " Libraries
 "Bundle 'L9'
 Bundle 'tpope/vim-repeat'
@@ -121,8 +123,11 @@ set laststatus=2       " Always show the statusline
 set cmdheight=2
 
 " set cursorLine on active buffer window
+
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
+"au InsertEnter * set number
+"au InsertLeave * set relativenumber
 
 " ---------------
 " Sounds
@@ -254,6 +259,8 @@ vnoremap ; :
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
+map <leader>n :set relativenumber<cr>
+map <leader>nn :set number<cr>
 
 " ---------------------------------------
 " Ruby tunes
@@ -322,6 +329,7 @@ if has("autocmd")
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+
 endif
 
 " Use F2 to toggle Paste in insert mode
