@@ -72,6 +72,7 @@ Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 
+set encoding=utf-8
 " ---------------------------------------------------------
 " Avoid Platform Specific Configuration (we love Mac OSX)
 " ---------------------------------------------------------
@@ -215,19 +216,15 @@ set <S-Up>=[1;2A
 set <S-Right>=[1;2C
 set <S-Left>=[1;2D
 
-"  alt
-set <kHome>=[1;9C
-set <kPageDown>=[1;9B
-set <kPageUp>=[1;9A
-set <kEnd>=[1;9D
-
 " Enable hugh speed motion
 nmap <C-Up> 8j
 nmap <C-Down> 8k
 imap <C-Up> <ESC>8ji
 imap <C-Down> <ESC>10ki
-map <kEnd> :bN<CR>
-map <kHome> :bn<CR>
+
+" cycle buffer with alt arrow keys
+map [1;3D :bN<CR>
+map [1;3C :bn<CR>
 
 nmap <silent> <S-Down> :wincmd j<CR>
 nmap <silent> <S-Up> :wincmd k<CR>
@@ -661,6 +658,22 @@ endif
 
 command! OpenUrl call OpenURL()
 nnoremap <leader>o :call OpenURL()<CR>
+
+" -------------------------------
+" Open RO buffer on right buffer
+" -------------------------------
+
+if !exists("*VsplitRO")
+  function! s:VsplitRO(fname)
+    echom "Split " . a:fname
+    :rightbelow vnew
+    :execute "sview ". a:fname
+    :wincmd j
+    :q
+  endfunction
+endif
+
+command! -nargs=1 Sv call s:VsplitRO(<f-args>)
 
 " ---------------
 " Paste link with Title
