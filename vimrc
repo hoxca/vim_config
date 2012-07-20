@@ -225,6 +225,8 @@ imap <C-Down> <ESC>10ki
 " cycle buffer with alt arrow keys
 map [1;3D :bN<CR>
 map [1;3C :bn<CR>
+map [1;9D :bN<CR>
+map [1;9C :bn<CR>
 
 nmap <silent> <S-Down> :wincmd j<CR>
 nmap <silent> <S-Up> :wincmd k<CR>
