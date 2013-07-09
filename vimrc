@@ -329,6 +329,10 @@ if has("autocmd")
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
+  autocmd FileType ruby set omnifunc=rubycomplete#Complete
+  autocmd FileType ruby let g:rubycomplete_buffer_loading=1
+  autocmd FileType ruby let g:rubycomplete_classes_in_global=1
+
 endif
 
 " Use F2 to toggle Paste in insert mode
@@ -569,6 +573,8 @@ let g:delimitMate_nesting_quotes = []
 let g:delimitMate_quotes = '" '' `'
 let g:delimitMate_smart_matchpairs = '^\%(\w\|\!\|£\|\$\|_\|["'']\s*\S\)'
 let g:delimitMate_smart_quotes = 1
+
+nmap <leader>d :DelimitMateSwitch<CR>
 
 " ---------------
 " Tabular
