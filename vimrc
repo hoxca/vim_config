@@ -1,7 +1,7 @@
 " =======================================
 " Who: Hugues Obolonsky (@hoxca)
 " What: .vimrc
-" Version: 1.0 
+" Version: 1.0
 " =======================================
 
 " ----------------------------------------
@@ -60,8 +60,9 @@ Bundle 'xolox/vim-notes'
 "Bundle "snipmate-snippets"
 
 " Language Additions
+Bundle 'JSON.vim'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'html5.vim' 
+Bundle 'html5.vim'
 Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
@@ -119,12 +120,15 @@ set directory=~/.vim/tmp
 " ---------------
 set ruler              " Ruler on
 set nu                 " Line numbers on
-set nowrap             " Line wrapping off
+set linebreak          " Warp long lines at blank
+set showbreak=↪\ \
+set wrap             " Line wrapping off
 set laststatus=2       " Always show the statusline
 set cmdheight=2
+set textwidth=40
+
 
 " set cursorLine on active buffer window
-
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 "au InsertEnter * set number
@@ -158,10 +162,11 @@ set wildmenu           " Turn on WiLd menu
 set hidden             " Change buffer - without saving
 set history=1024       " Number of things to remember in history.
 set cf                 " Enable error files & error jumping.
-set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard=unnamed  " Yanks go on clipboard instead.
 set autowrite          " Writes on make/shell commands
 set timeoutlen=250    " Time to wait for a command (after leader for example)
-
+set list                       " show trailing whitespace
+set listchars=tab:▸\ ,trail:✜"
 set foldlevelstart=99  " Remove folds
 set formatoptions=crql
 
@@ -176,7 +181,6 @@ set autoindent
 set smarttab
 set expandtab
 set pastetoggle=<F2>   " Use F2 to toggle Paste in insert mode"
-set backspace=2
 
 " ---------------
 " Searching
@@ -265,6 +269,8 @@ map <leader>nn :set number<cr>
 " Ruby tunes
 " ---------------------------------------
 
+let ruby_space_errors = 1
+
 if !exists( "*RubyEndToken" )
 
   function RubyEndToken()
@@ -305,7 +311,7 @@ function! RenameFile()
   endif
 endfunction
 map <leader>m :call RenameFile()<cr>
-  
+
 " ----------------------------------------
 " Auto Commands
 " ----------------------------------------
@@ -325,6 +331,8 @@ if has("autocmd")
         \ endif
 
   autocmd BufRead,BufNewFile *.vm set ft=html syntax=velocity
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.json set filetype=json
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
