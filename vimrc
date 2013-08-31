@@ -67,8 +67,8 @@ Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
 Bundle 'tpope/vim-haml'
+Bundle 'airblade/vim-gitgutter'
 " Libraries
-"Bundle 'L9'
 Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
@@ -108,6 +108,7 @@ else
   let g:CSApprox_verbose_level=0
   :silent! colorscheme slate
 endif
+
 " ---------------
 " Backups
 " ---------------
@@ -249,8 +250,6 @@ nmap K k
 vmap K k
 
 " Make line completion easier
-"imap <C-l> <C-x><C-l>
-" Used for ruby right spaceship
 
 " map reload
 map <leader>k :w<cr>:so %<cr>
