@@ -37,6 +37,7 @@ Bundle 'hoxca/bk_hoxca_colors'
 Bundle 'wincent/Command-T'
 Bundle 'Conque-Shell'
 Bundle 'matchit.zip'
+Bundle 'StripWhiteSpaces'
 
 " Commands
 Bundle 'tpope/vim-surround'
@@ -192,7 +193,7 @@ set incsearch
 set hlsearch
 
 " Use CR to discard search highligthning
-nnoremap <CR> :noh<CR><CR>:<ESC> 
+nnoremap <CR> :noh<CR><CR>:<ESC>
 
 " ---------------
 " Visual
@@ -453,7 +454,7 @@ let g:indent_guides_enable_on_vim_startup=0
 let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=5
 
-if $TERM == 'xterm-256color' 
+if $TERM == 'xterm-256color'
       " Make the guides smaller since they will be crazy visible in 256color mode
       let g:indent_guides_guide_size=1
 else
@@ -559,7 +560,7 @@ if has('ruby')
   endif
 
   " I constantly remap ,t so i don't use it for commandT !
-  " Leader Commands 
+  " Leader Commands
   " nnoremap <leader>t :CommandT<CR>
 endif
 
@@ -616,7 +617,7 @@ if has('ruby')
 ruby << EOF
   require 'open-uri'
   require 'openssl'
-  
+
   def extract_url(url)
     re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]\{\};:'".,<>?«»“”‘’]))}
     url.match(re).to_s
