@@ -51,7 +51,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'tComment'
 
 " Take some Notes in vim
-Bundle 'xolox/vim-notes'
+" Bundle 'xolox/vim-notes'
 
 " SnipMate
 "Bundle "garbas/vim-snipmate"
@@ -69,6 +69,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
 Bundle 'tpope/vim-haml'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'fatih/vim-go'
 " Libraries
 Bundle 'tpope/vim-repeat'
 
@@ -333,6 +334,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.vm set ft=html syntax=velocity
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.json set filetype=json
+  autocmd BufRead,BufNewFile *.go set filetype=go syntax=go listchars=tab:\ \ ,trail:✜"
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
