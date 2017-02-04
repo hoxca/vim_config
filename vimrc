@@ -11,6 +11,10 @@
 set nocompatible " be iMproved
 filetype off     " required!
 
+scriptencoding utf-8
+set encoding=utf-8
+" ---------------------------------------------------------
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -31,10 +35,9 @@ Bundle 'minibufexpl.vim'
 Bundle 'cmdline-insertdatetime'
 
 " UI Additions
-Bundle 'mutewinter/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hoxca/bk_hoxca_colors'
-Bundle 'wincent/Command-T'
 Bundle 'Conque-Shell'
 Bundle 'matchit.zip'
 Bundle 'StripWhiteSpaces'
@@ -42,10 +45,10 @@ Bundle 'StripWhiteSpaces'
 " Commands
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
-Bundle 'godlygeek/tabular'
+"Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 "Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
 Bundle 'tComment'
@@ -70,12 +73,12 @@ Bundle 'lepture/vim-velocity'
 Bundle 'tpope/vim-haml'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'fatih/vim-go'
+Bundle 'nsf/gocode'
 " Libraries
 Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 
-set encoding=utf-8
 " ---------------------------------------------------------
 " Avoid Platform Specific Configuration (we love Mac OSX)
 " ---------------------------------------------------------
@@ -391,8 +394,8 @@ let g:ConqueTerm_TERM = 'xterm-color'
 " ---------------
 " Set these up for cross-buffer completion (something Neocachecompl has a hard
 " time with)
-let g:SuperTabDefaultCompletionType="<c-x><c-n>"
-let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
+" let g:SuperTabDefaultCompletionType="<c-x><c-n>"
+" let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
 
 
 " ---------------
