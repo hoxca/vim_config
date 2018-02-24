@@ -38,7 +38,7 @@ Bundle 'cmdline-insertdatetime'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hoxca/bk_hoxca_colors'
-Bundle 'Conque-Shell'
+" Bundle 'Conque-Shell'
 Bundle 'matchit.zip'
 Bundle 'StripWhiteSpaces'
 
@@ -46,12 +46,13 @@ Bundle 'StripWhiteSpaces'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'godlygeek/tabular'
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 "Bundle 'ervandew/supertab'
 "Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
 Bundle 'tComment'
+Bundle 'loremipsum'
 
 " Take some Notes in vim
 " Bundle 'xolox/vim-notes'
@@ -66,7 +67,8 @@ Bundle 'tComment'
 " Language Additions
 Bundle 'JSON.vim'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'html5.vim'
+"Bundle 'html5.vim'
+Bundle 'othree/html5.vim'
 Bundle 'HTML5-Syntax-File'
 Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
@@ -74,6 +76,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'fatih/vim-go'
 Bundle 'nsf/gocode'
+Bundle 'vim-pandoc'
 " Libraries
 Bundle 'tpope/vim-repeat'
 
@@ -150,9 +153,10 @@ set t_vb=
 " ---------------
 " Mouse
 " ---------------
-set mousehide          " Hide mouse after chars typed
+" set mousehide          " Hide mouse after chars typed
 " set mouse=nihr         " Mouse in almost all mode (avoid visual)
-set mouse=a
+" set mouse=a
+set mouse=
 
 " Better complete options to speed it up
 set complete=.,w,b,u,U
@@ -335,7 +339,7 @@ if has("autocmd")
         \ endif
 
   autocmd BufRead,BufNewFile *.vm set ft=html syntax=velocity
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.md set filetype=markdown textwidth=0
   autocmd BufRead,BufNewFile *.json set filetype=json
   autocmd BufRead,BufNewFile *.go set filetype=go syntax=go listchars=tab:\ \ ,trail:✜"
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -468,6 +472,14 @@ else
 endif
 " map ,g to toggle fct
 map <leader>g :call indent_guides#toggle()<CR>
+
+" ---------------------------------------------
+" Pandoc
+" ---------------------------------------------
+
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+let g:pandoc#filetypes#pandoc_markdown = 0
+" let g:pandoc#modules#disabled = ["folding"]
 
 " ---------------------------------------------
 " Notes setup
